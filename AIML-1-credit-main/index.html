@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mohanbabu S — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f0;
+      --ink: #1a1a18;
+      --muted: #7a7a72;
+      --accent: #2d6a4f;
+      --accent-light: #d8f3dc;
+      --line: #ddd9d0;
+      --card: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(247,245,240,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      animation: fadeDown .6s ease both;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      letter-spacing: .02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      gap: 4rem;
+    }
+    .hero-text { animation: fadeUp .8s ease .2s both; }
+    .hero-eyebrow {
+      font-size: .8rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 1rem;
+    }
+    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-role {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      padding: .85rem 2rem;
+      border-radius: 999px;
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+      transition: background .2s, transform .2s;
+    }
+    .hero-cta:hover { background: var(--accent); transform: translateY(-2px); }
+
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      animation: fadeUp .8s ease .4s both;
+    }
+    .hero-card {
+      width: 320px; height: 380px;
+      background: var(--card);
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1rem;
+      box-shadow: 0 24px 60px rgba(0,0,0,.07);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 180px; height: 180px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      opacity: .5;
+    }
+    .avatar {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: #fff;
+      position: relative; z-index: 1;
+    }
+    .hero-card-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      position: relative; z-index: 1;
+    }
+    .hero-card-tag {
+      font-size: .8rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: .3rem .9rem;
+      border-radius: 999px;
+      font-weight: 500;
+      position: relative; z-index: 1;
+    }
+    .hero-card-college {
+      font-size: .8rem;
+      color: var(--muted);
+      position: relative; z-index: 1;
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 4rem; }
+    .section-label {
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+    .divider { width: 100%; height: 1px; background: var(--line); }
+
+    /* ABOUT */
+    #about { background: var(--card); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-body { font-size: 1.05rem; color: #444; line-height: 1.9; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .stat-box {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
+
+    /* SKILLS */
+    #skills { background: var(--bg); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.2rem;
+    }
+    .skill-chip {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.4rem 1.2rem;
+      display: flex; flex-direction: column; gap: .6rem;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .skill-chip:hover { box-shadow: 0 8px 28px rgba(0,0,0,.08); transform: translateY(-3px); }
+    .skill-icon { font-size: 1.8rem; }
+    .skill-name { font-weight: 500; font-size: .95rem; }
+    .skill-level { height: 4px; background: var(--line); border-radius: 99px; overflow: hidden; }
+    .skill-bar { height: 100%; background: var(--accent); border-radius: 99px; }
+
+    /* PROJECTS */
+    #projects { background: var(--card); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .project-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,.1); transform: translateY(-4px); }
+    .project-thumb {
+      height: 180px;
+      background: linear-gradient(135deg, var(--accent-light) 0%, #b7e4c7 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+    }
+    .project-body { padding: 1.5rem; }
+    .project-tag {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: .5rem;
+    }
+    .project-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: .6rem; }
+    .project-desc { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+
+    /* CONTACT */
+    #contact { background: var(--ink); color: #fff; text-align: center; }
+    #contact .section-label { color: #74c69d; }
+    #contact .section-title { color: #fff; margin-bottom: 1rem; }
+    #contact p { color: #aaa; margin-bottom: 2rem; font-size: 1rem; }
+    .contact-email {
+      display: inline-block;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: #74c69d;
+      text-decoration: none;
+      border-bottom: 1px solid #74c69d;
+      padding-bottom: .2rem;
+      transition: opacity .2s;
+    }
+    .contact-email:hover { opacity: .7; }
+    .contact-note { font-size: .85rem; color: #555; margin-top: 3rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid #2a2a28;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: .8rem;
+      color: #555;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; text-align: center; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">MS</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">👋 Hello, I'm</p>
+      <h1 class="hero-name">Mohan<br/><em>babu S</em></h1>
+      <p class="hero-role">BE CSE (AI & ML) Student · Aspiring AI Engineer</p>
+      <a class="hero-cta" href="#contact">Get in touch ↓</a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="avatar">M</div>
+        <div class="hero-card-name">Mohanbabu S</div>
+        <div class="hero-card-tag">AI & ML Enthusiast</div>
+        <div class="hero-card-college">KSRCT · BE CSE (AIML)</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="reveal">
+      <p class="section-label">Who I am</p>
+      <h2 class="section-title">About Me</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-body">
+        <p>Hi! I'm <strong>Mohanbabu S</strong>, a passionate Computer Science student specialising in
+        <strong>Artificial Intelligence & Machine Learning</strong> at KSRCT. I love building real-world
+        AI solutions that solve everyday problems — from detecting crop diseases to exploring intelligent systems.</p>
+        <br/>
+        <p>I'm constantly learning and experimenting with new technologies, driven by curiosity and a
+        desire to make meaningful impact through code.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num">BE</div>
+          <div class="stat-label">Bachelor of Engineering (CSE)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">AI</div>
+          <div class="stat-label">Specialisation in AIML</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">1+</div>
+          <div class="stat-label">AI Project Built</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Programming Languages</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="reveal">
+      <p class="section-label">What I know</p>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-chip">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-level"><div class="skill-bar" style="width:75%"></div></div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">☕</div>
+        <div class="skill-name">Java</div>
+        <div class="skill-level"><div class="skill-bar" style="width:55%"></div></div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">HTML</div>
+        <div class="skill-level"><div class="skill-bar" style="width:40%"></div></div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">Machine Learning</div>
+        <div class="skill-level"><div class="skill-bar" style="width:60%"></div></div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-name">Deep Learning</div>
+        <div class="skill-level"><div class="skill-bar" style="width:50%"></div></div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">💡</div>
+        <div class="skill-name">Problem Solving</div>
+        <div class="skill-level"><div class="skill-bar" style="width:70%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="reveal">
+      <p class="section-label">What I've built</p>
+      <h2 class="section-title">Projects</h2>
+    </div>
+    <div class="projects-grid reveal">
+      <div class="project-card">
+        <div class="project-thumb">🌿</div>
+        <div class="project-body">
+          <div class="project-tag">AI · Computer Vision</div>
+          <div class="project-title">Plant Disease Detection</div>
+          <p class="project-desc">An AI-powered system that analyses plant images to detect diseases early,
+          helping farmers take timely action and improve crop yield using deep learning models.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="reveal">
+      <p class="section-label">Let's connect</p>
+      <h2 class="section-title">Get In Touch</h2>
+      <p>Have a project idea, collaboration, or just want to say hi? Drop me an email!</p>
+      <a class="contact-email" href="mailto:mohanbabu@ksrct.net">mohanbabu@ksrct.net</a>
+      <div class="contact-note">© 2025 Mohanbabu S · BE CSE (AIML)</div>
+    </div>
+  </section>
+
+  <footer>Built with passion · Mohanbabu S</footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+
+</body>
+</html>
